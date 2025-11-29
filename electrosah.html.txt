@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ELECTRO SALAH EDDINE - خدمات كهربائية احترافية في المغرب. تركيب كاميرات مراقبة، تكييف، واي فاي، إنارة LED">
+    <meta name="keywords" content="كهربائي، كاميرات مراقبة، تكييف، واي فاي، LED، المغرب">
+    <title>ELECTRO SALAH EDDINE | خدمات كهربائية احترافية 24/7</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --gold: #ffd700;
+            --orange: #ff8c00;
+            --blue: #4facfe;
+            --dark: #0a0a0a;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Loading Screen */
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+        
+        .loader {
+            width: 70px;
+            height: 70px;
+            border: 6px solid rgba(255,215,0,0.2);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold);
+            animation: particle-float 8s linear infinite;
+        }
+        
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 25%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 40%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 55%; animation-delay: 1.5s; }
+        .particle:nth-child(5) { left: 70%; animation-delay: 0.5s; }
+        .particle:nth-child(6) { left: 85%; animation-delay: 2.5s; }
+        
+        @keyframes particle-float {
+            0% { top: 100%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: -10%; opacity: 0; }
+        }
+        
+        /* Scroll to Top Button */
+        #scrollTop {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        
+        #scrollTop.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        #scrollTop:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.98);
+            color: white;
+            padding: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.4);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .logo-animated {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            animation: logo-float 3s ease-in-out infinite;
+        }
+        
+        @keyframes logo-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .logo-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ffed4e 0%, var(--gold) 50%, var(--orange) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 1);
+            z-index: 3;
+            animation: core-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes core-pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+        
+        .energy-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 3px solid rgba(255, 215, 0, 0.6);
+            animation: ring-rotate 4s linear infinite;
+        }
+        
+        .ring-1 { width: 100px; height: 100px; }
+        .ring-2 { width: 120px; height: 120px; animation-duration: 6s; animation-direction: reverse; }
+        
+        @keyframes ring-rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .electric-spark {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--gold);
+            animation: spark-orbit 4s linear infinite;
+        }
+        
+        .spark-1 { animation-delay: 0s; }
+        .spark-2 { animation-delay: -2s; }
+        
+        @keyframes spark-orbit {
+            0% { transform: rotate(0deg) translateX(60px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: rotate(360deg) translateX(60px); opacity: 0; }
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--gold) 0%, #ffed4e 50%, var(--gold) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-shimmer 3s ease-in-out infinite;
+            font-weight: 900;
+        }
+        
+        @keyframes text-shimmer {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 200% center; }
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            color: var(--blue);
+            text-shadow: 0 0 10px rgba(79, 172, 254, 0.8);
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: all 0.5s;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+        
+        nav a:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        nav a:hover {
+            color: white;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Section Styles */
+        section {
+            background: rgba(255, 255, 255, 0.97);
+            margin: 3rem 0;
+            padding: 4rem 2.5rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            padding-bottom: 1.5rem;
+            font-weight: 900;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+            border-radius: 3px;
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+            transition: all 0.4s;
+            border: 3px solid transparent;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.4);
+            border-color: var(--primary);
+        }
+        
+        .service-img {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.6);
+        }
+        
+        .service-body {
+            padding: 2rem;
+        }
+        
+        .service-body h3 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .service-body p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .service-features li {
+            padding: 0.6rem 0;
+            color: #666;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        
+        .service-features li::before {
+            content: '⚡';
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+        
+        /* Statistics */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 20px;
+            transition: all 0.4s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        .stat-card:hover .stat-number,
+        .stat-card:hover .stat-label {
+            color: white;
+        }
+        
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            transition: all 0.4s;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            transition: all 0.4s;
+        }
+        
+        /* Reviews */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+          .review-card {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .review-card::before {
+            content: '❝';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 4rem;
+            color: rgba(102, 126, 234, 0.1);
+        }
+        
+        .review-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .reviewer-info h4 {
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .review-date {
+            color: #888;
+            font-size: 0.85rem;
+        }
+        
+        .review-stars {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
+        }
+        
+        .review-text {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+        
+        /* Add Review Form */
+        .add-review {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 3rem;
+            border-radius: 25px;
+            border: 3px dashed var(--primary);
+        }
+        
+        .add-review h3 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .star-rating {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 2rem;
+            justify-content: center;
+        }
+        
+        .star {
+            cursor: pointer;
+            color: #ddd;
+            transition: all 0.2s;
+        }
+        
+        .star:hover,
+        .star.active {
+            color: var(--gold);
+            transform: scale(1.2);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            display: block;
+            margin: 2rem auto 0;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            -webkit-text-fill-color: white;
+        }
+        
+        .cta-section h2::after {
+            background: white;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .contact-btns {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1.3rem 3.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.2rem;
+            transition: all 0.4s;
+            border: 3px solid white;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255,255,255,0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-8px) scale(1.05);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.8rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            transform: scale(1.25);
+            color: var(--gold);
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 2rem; }
+            .services-grid, .reviews-grid, .stats-grid { grid-template-columns: 1fr; }
+            .logo-animated { width: 90px; height: 90px; }
+            .logo-core { width: 65px; height: 65px; font-size: 2rem; }
+            nav ul { gap: 1rem; padding: 0 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-animated">
+                <div class="energy-ring ring-1"></div>
+                <div class="energy-ring ring-2"></div>
+                <div class="electric-spark spark-1"></div>
+                <div class="electric-spark spark-2"></div>
+                <div class="logo-core">⚡</div>
+            </div>
+            <div>
+                <h1>ELECTRO SALAH EDDINE</h1>
+                <p class="tagline">⚡ الكهرباء العامة في خدمتكم ⚡</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">🏠 الرئيسية</a></li>
+            <li><a href="#services">⚙️ خدماتنا</a></li>
+            <li><a href="#stats">📊 إنجازاتنا</a></li>
+            <li><a href="#reviews">⭐ آراء العملاء</a></li>
+            <li><a href="#contact">📞 اتصل بنا</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Home Section -->
+        <section id="home">
+            <h2>🌟 مرحباً بكم في ELECTRO SALAH EDDINE 🌟</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #555; max-width: 850px; margin: 2rem auto; line-height: 2;">
+                <strong>ELECTRO SALAH EDDINE</strong> - فريق متخصص في تقديم جميع الخدمات الكهربائية والتقنية بأعلى معايير الجودة والاحترافية. 
+                نضمن لك حلولاً موثوقة وآمنة مع خبرة طويلة في المجال وفريق محترف مدرب على أحدث التقنيات.
+                <br><br>
+                <strong style="color: var(--primary); font-size: 1.3rem;">📍 الدار البيضاء - المغرب | ⏰ خدمة 24/7 | 📞 212 775 052 532</strong>
+            </p>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <h2>🔧 كتالوج خدماتنا الشاملة 🔧</h2>
+            <div class="services-grid">
+                
+                <!-- Service 1: CCTV -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600&h=400&fit=crop" alt="كاميرات مراقبة">
+                        <span class="service-badge">⭐ الأكثر طلباً</span>
+                    </div>
+                    <div class="service-body">
+                        <h3>📹 تركيب كاميرات المراقبة</h3>
+                        <p>حلول أمنية متكاملة بأحدث تقنيات المراقبة. نركب كاميرات عالية الدقة 2MP/4MP مع مراقبة مباشرة عبر هاتفك من أي مكان.</p>
+                        <ul class="service-features">
+                            <li>كاميرات 2MP/4MP داخلية وخارجية</li>
+                            <li>مراقبة مباشرة عبر الهاتف</li>
+                            <li>تسجيل مستمر DVR/NVR</li>
+                            <li>رؤية ليلية واضحة حتى 40 متر</li>
+                            <li>ضمان شامل على الأجهزة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 2: Air Conditioning -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=600&h=400&fit=crop" alt="تكييف">
+                        <span class="service-badge">❄️ خدمة مميزة</span>
+                    </div>
+                    <div class="service-body">
+                        <h3>❄️ تركيب وصيانة أنظمة التكييف</h3>
+                        <p>خبراء في تركيب جميع أنواع المكيفات السبليت والمركزية مع صيانة دورية لضمان الأداء الأمثل وتوفير الطاقة.</p>
+                        <ul class="service-features">
+                            <li>تركيب مكيفات سبليت ومركزية</li>
+                            <li>صيانة دورية شاملة</li>
+                            <li>تنظيف وتعبئة غاز الفريون</li>
+                            <li>فحص الأداء والكفاءة</li>
+                            <li>خدمة طوارئ 24/7</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 3: WiFi -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1606904825846-647eb07f5be2?w=600&h=400&fit=crop" alt="واي فاي">
+                        <span class="service-badge">📡 حل ذكي</span>
+                    </div>
+                    <div class="service-body">
+                        <h3>📡 تركيب نقاط الوصول WiFi</h3>
+                        <p>حلول شبكات لاسلكية احترافية للمنازل والشركات بتغطية كاملة وسرعة عالية مع تأمين شامل للشبكة.</p>
+                        <ul class="service-features">
+                            <li>نقاط وصول (Access Points) قوية</li>
+                            <li>تغطية واي فاي شاملة بدون انقطاع</li>
+                            <li>تأمين الشبكة من الاختراق</li>
+                            <li>توزيع الإنترنت بكفاءة عالية</li>
+                            <li>إعدادات متقدمة وتحكم كامل</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 4: LED -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?w=600&h=400&fit=crop" alt="إنارة LED">
+                        <span class="service-badge">💡 توفير طاقة</span>
+                    </div>
+                    <div class="service-body">
+                        <h3>💡 تركيب إضاءة RGB وإنارة LED</h3>
+                        <p>تصاميم إنارة عصرية وموفرة للطاقة تضيف لمسة جمالية لمنزلك أو مكتبك مع إمكانية التحكم بالألوان.</p>
+                        <ul class="service-features">
+                            <li>إضاءة LED داخلية وخارجية</li>
+                            <li>تصاميم ديكورية حديثة RGB</li>
+                            <li>توفير حتى 80% من الطاقة</li>
+                            <li>إضاءة ملونة قابلة للتحكم</li>
+                            <li>عمر افتراضي طويل جداً</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 5: Alarm Systems -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=600&h=400&fit=crop" alt="أنظمة الإنذار">
+                        <span class="service-badge">🔔 أمان متقدم</span>
+                    </div>
+                    <div class="service-body">
+                        <h3>🔔 أنظمة الإنذار والأمان</h3>
+                        <p>تركيب أنظمة إنذار حديثة للحماية من السرقة والحريق مع إشعارات فورية على هاتفك في أي طارئ.</p>
+                        <ul class="service-features">
+                            <li>أجهزة إنذار ضد السرقة</li>
+                            <li>كواشف الدخان والحريق</li>
+                            <li>إشعارات فورية على الهاتف</li>
+                            <li>تكامل مع أنظمة المراقبة</li>
+                            <li>صيانة دورية مجانية</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 6: Electrical Work -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop" alt="أعمال كهربائية">
+                        <span class="service-badge">🔧 خبرة طويلة</span>
+                    </div>
+                    <div class="service-body">
+                        <h3>🔧 جميع الأعمال الكهربائية العامة</h3>
+                        <p>تمديدات كهربائية كاملة، إصلاح الأعطال، تركيب اللوحات الكهربائية، وجميع خدمات الكهرباء العامة.</p>
+                        <ul class="service-features">
+                            <li>تمديدات كهربائية للمباني الجديدة</li>
+                            <li>إصلاح جميع الأعطال الكهربائية</li>
+                            <li>تركيب لوحات التوزيع</li>
+                            <li>فحص وصيانة دورية</li>
+                            <li>التزام بمعايير السلامة</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section id="stats">
+            <h2>📊 أرقامنا تتحدث عنا 📊</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">عميل راضٍ</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-number" data-target="1200">0</div>
+                    <div class="stat-label">مشروع منجز</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">سنوات خبرة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">جودة مضمونة</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews">
+            <h2>⭐ آراء عملائنا الكرام ⭐</h2>
+            <div class="reviews-grid">
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">أح</div>
+                        <div class="reviewer-info">
+                            <h4>أحمد الخطيب</h4>
+                            <span class="review-date">منذ أسبوعين</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">خدمة ممتازة جداً! ركبوا لي 8 كاميرات مراقبة بجودة عالية والتطبيق يعمل بشكل رائع. فريق محترف والأسعار معقولة. أنصح بهم بشدة!</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div
+                        class="reviewer-avatar">فز</div>
+                        <div class="reviewer-info">
+                            <h4>فاطمة الزهراء</h4>
+                            <span class="review-date">منذ 5 أيام</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">ركبوا لنا مكيفين في الصالون والغرف. الخدمة كانت سريعة ونظيفة جداً. المكيفات تشتغل بشكل ممتاز ما شاء الله!</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">يب</div>
+                        <div class="reviewer-info">
+                            <h4>يوسف بنعلي</h4>
+                            <span class="review-date">منذ شهر</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">أفضل فني كهربائي تعاملت معه! حل مشكلة الكهرباء في المحل بسرعة واحترافية. أسعاره ممتازة وشغله نظيف.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">سع</div>
+                        <div class="reviewer-info">
+                            <h4>سعيد المرابط</h4>
+                            <span class="review-date">منذ 3 أسابيع</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">ركبوا لي شبكة واي فاي في كامل المنزل. التغطية ممتازة في كل مكان الآن! فريق محترف ويفهم في شغله.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">مك</div>
+                        <div class="reviewer-info">
+                            <h4>محمد الكريم</h4>
+                            <span class="review-date">منذ أسبوع</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">شكراً على الخدمة الممتازة! ركبوا لي إنارة LED ديكورية في المطعم. النتيجة رائعة والزبائن معجبين بالتصميم.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">رم</div>
+                        <div class="reviewer-info">
+                            <h4>رشيد المنصوري</h4>
+                            <span class="review-date">منذ شهرين</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">أحسن خدمة! استجابة سريعة حتى في وقت متأخر. حلوا مشكلة طارئة في الكهرباء بسرعة. الله يبارك فيكم!</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">نج</div>
+                        <div class="reviewer-info">
+                            <h4>نادية الجابري</h4>
+                            <span class="review-date">منذ 10 أيام</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">خدمة احترافية من البداية للنهاية. ركبوا نظام أمان كامل للشركة. الأسعار معقولة والضمان ممتاز.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">عت</div>
+                        <div class="reviewer-info">
+                            <h4>عبد الله التازي</h4>
+                            <span class="review-date">منذ 4 أيام</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">ما شاء الله عليهم! صيانة دورية للمكيفات بشكل ممتاز. فريق نظيف ومحترم ومواعيدهم دقيقة.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">هب</div>
+                        <div class="reviewer-info">
+                            <h4>هشام البركاوي</h4>
+                            <span class="review-date">منذ شهر</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">أنصح الجميع بالتعامل معهم. جودة عالية وأسعار منافسة. عملوا لي تمديدات كهربائية للفيلا الجديدة بشكل ممتاز.</p>
+                </div>
+
+            </div>
+
+            <!-- Add Review Form -->
+            <div class="add-review">
+                <h3>📝 شارك تجربتك معنا</h3>
+                <form class="review-form" id="reviewForm">
+                    <div class="form-group">
+                        <label>الاسم الكامل</label>
+                        <input type="text" id="reviewName" placeholder="أدخل اسمك" required>
+                    </div>
+                    <div class="form-group">
+                        <label>تقييمك</label>
+                        <div class="star-rating" id="starRating">
+                            <span class="star" data-rating="1">★</span>
+                            <span class="star" data-rating="2">★</span>
+                            <span class="star" data-rating="3">★</span>
+                            <span class="star" data-rating="4">★</span>
+                            <span class="star" data-rating="5">★</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>رأيك في خدماتنا</label>
+                        <textarea id="reviewText" placeholder="شاركنا تجربتك..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">إرسال التقييم ⭐</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Contact CTA Section -->
+    <section id="contact" class="cta-section">
+        <h2>📞 هل تحتاج لخدماتنا؟ 📞</h2>
+        <p style="font-size: 1.4rem; margin: 2rem 0;">اتصل بنا الآن واحصل على استشارة مجانية وخصم خاص!</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">📞 212 775 052 532+</div>
+            <div class="contact-item">📍 الدار البيضاء - المغرب</div>
+            <div class="contact-item">⏰ خدمة 24/7</div>
+        </div>
+
+        <div class="contact-btns">
+            <a href="tel:+212775052532" class="btn btn-primary">📞 اتصل الآن</a>
+            <a href="https://wa.me/212775052532" class="btn btn-secondary" target="_blank">💬 واتساب</a>
+        </div>
+
+        <p style="font-size: 1.2rem; margin-top: 3rem;">
+            ✅ استجابة فورية | ✅ أسعار منافسة | ✅ ضمان شامل | ✅ فريق محترف
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h3 style="font-size: 2rem; margin-bottom: 1rem;">⚡ ELECTRO SALAH EDDINE ⚡</h3>
+        <p style="margin: 1rem 0; font-size: 1.1rem;">الكهرباء العامة في خدمتكم</p>
+        
+        <div class="social-links">
+            <a href="#" title="فيسبوك">📘</a>
+            <a href="#" title="إنستغرام">📸</a>
+            <a href="https://wa.me/212775052532" title="واتساب" target="_blank">💬</a>
+            <a href="tel:+212775052532" title="اتصال">📞</a>
+        </div>
+
+        <p style="margin-top: 2rem; opacity: 0.8; font-size: 0.95rem;">
+            © 2024 ELECTRO SALAH EDDINE - جميع الحقوق محفوظة
+        </p>
+        <p style="margin-top: 0.5rem; opacity: 0.7; font-size: 0.9rem;">
+            📍 Casablanca, Maroc | 📞 +212 775 052 532
+        </p>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loading').style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // Scroll to Top Button
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        // Animate Statistics
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCount = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + '+';
+                        clearInterval(updateCount);
+                    } else {
+                        stat.textContent = Math.floor(current);
+                    }
+                }, 20);
+            });
+        }
+
+        // Trigger animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.getElementById('stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Star Rating
+        let selectedRating = 0;
+        const stars = document.querySelectorAll('.star');
+        
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                selectedRating = parseInt(this.getAttribute('data-rating'));
+                stars.forEach(s => {
+                    if (parseInt(s.getAttribute('data-rating')) <= selectedRating) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Review Form Submission
+        document.getElementById('reviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('reviewName').value;
+            const text = document.getElementById('reviewText').value;
+            
+            if (selectedRating === 0) {
+                alert('الرجاء اختيار التقييم بالنجوم!');
+                return;
+            }
+            
+            // Create new review card
+            const reviewsGrid = document.querySelector('.reviews-grid');
+            const newReview = document.createElement('div');
+            newReview.className = 'review-card';
+            newReview.style.animation = 'fadeInUp 0.8s ease-out';
+            
+            const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2);
+            const starsHTML = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+            
+            newReview.innerHTML = `
+                <div class="review-header">
+                    <div class="reviewer-avatar">${initials}</div>
+                    <div class="reviewer-info">
+                        <h4>${name}</h4>
+                        <span class="review-date">الآن</span>
+                    </div>
+                </div>
+                <div class="review-stars">${starsHTML}</div>
+                <p class="review-text">${text}</p>
+            `;
+            
+            reviewsGrid.insertBefore(newReview, reviewsGrid.firstChild);
+            
+            // Reset form
+            document.getElementById('reviewForm').reset();
+            stars.forEach(s => s.classList.remove('active'));
+            selectedRating = 0;
+            
+            // Success message
+            alert('شكراً لك! تم إضافة تقييمك بنجاح ⭐');
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — ÉLECTRO Salah Eddine</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0c0d;
+      --card:#0f1113;
+      --muted:#9aa0a8;
+      --accent:#7fd1f6;
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      font-family: "Cairo", sans-serif;
+      color:#e6eef5;
+    }
+    .page-wrap{
+      max-width:420px;
+      margin:28px auto;
+      padding:18px;
+    }
+    .contact-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      border-radius:16px;
+      padding:22px;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      overflow:hidden;
+    }
+    .contact-title{
+      font-family: "Orbitron", sans-serif;
+      font-size:34px;
+      color:#fff;
+      margin:2px 0 18px;
+      letter-spacing:2px;
+    }
+    .line{
+      margin:12px 0;
+      display:block;
+      color:#dbe9ef;
+      font-size:18px;
+      line-height:1.35;
+    }
+    .label{
+      display:inline-block;
+      color:#e8eef3;
+      font-weight:700;
+      margin-left:8px;
+    }
+    .value{
+      display:block;
+      margin-top:8px;
+      color:var(--accent);
+      font-weight:600;
+      text-decoration:none;
+      word-break:break-word;
+      font-size:20px;
+      letter-spacing:1px;
+    }
+    .row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .instagram-handle{
+      color:var(--accent);
+      font-size:20px;
+      display:block;
+      margin-top:8px;
+      word-break:break-word;
+    }
+    .map-wrap{
+      margin-top:18px;
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      background:#bfeeff;
+    }
+    .map-wrap iframe{
+      width:100%;
+      height:300px;
+      border:0;
+      display:block;
+    }
+    .footer-row{
+      margin-top:20px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      letter-spacing:1px;
+    }
+    .footer-row a{
+      color:var(--accent);
+      text-decoration:none;
+      margin:0 8px;
+      font-weight:600;
+    }
+    .reveal{
+      opacity:0;
+      transform:translateY(40px);
+      transition:all 0.8s cubic-bezier(.2,.9,.2,1);
+    }
+    .reveal.active{
+      opacity:1;
+      transform:translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrap">
+    <div class="contact-card reveal" id="contactCard">
+
+      <div class="contact-title">CONTACT</div>
+      <!-- WhatsApp FIXED -->
+      <div class="line row">
+        <div class="label">Téléphone :</div>
+        <a class="value" 
+           href="https://api.whatsapp.com/send?phone=212775052532"
+           target="_blank">+212 775 052 532</a>
+      </div>
+
+      <div class="line">
+        <div class="label">Email :</div>
+        <a class="value" href="mailto:electrosalaheddine72@gmail.com">
+          electrosalaheddine72@gmail.com
+        </a>
+      </div>
+
+      <div class="line row">
+        <div class="label">Adresse :</div>
+        <div class="value" style="color:#dbe9ef; font-weight:600;">
+          Casablanca, Maroc
+        </div>
+      </div>
+
+      <!-- Facebook FIXED -->
+      <div class="line row">
+        <div class="label">Facebook :</div>
+        <a class="value"
+           href="fb://facewebmodal/f?href=https://www.facebook.com/share/1GANDvzHVY/"
+           onclick="window.location='https://www.facebook.com/share/1GANDvzHVY/'; return false;">
+          Page Facebook
+        </a>
+      </div>
+
+      <!-- Instagram FIXED -->
+      <div class="line">
+        <div class="label">Instagram :</div>
+        <a class="instagram-handle"
+           href="instagram://user?username=salah_eddine_officiel"
+           onclick="window.location='https://www.instagram.com/salah_eddine_officiel'; return false;">
+          @salah_eddine_officiel
+        </a>
+      </div>
+
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps?q=Casablanca&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="خريطة الدار البيضاء"></iframe>
+      </div>
+
+      <div class="footer-row">
+        <a href="https://api.whatsapp.com/send?phone=212775052532" target="_blank">WhatsApp</a>
+        ·
+        <a href="fb://facewebmodal/f?href=https://www.facebook.com/share/1GANDvzHVY/"
+           onclick="window.location='https://www.facebook.com/share/1GANDvzHVY/'; return false;">
+           Facebook
+        </a>
+        ·
+        <a href="instagram://user?username=salah_eddine_officiel"
+           onclick="window.location='https://www.instagram.com/salah_eddine_officiel'; return false;">
+           Instagram
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function revealOnView() {
+      const el = document.getElementById('contactCard');
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (rect.top < vh - 120) el.classList.add('active');
+    }
+    window.addEventListener('load', revealOnView);
+    window.addEventListener('scroll', revealOnView);
+    window.addEventListener('resize', revealOnView);
+  </script>
+
+</body>
+</html>
